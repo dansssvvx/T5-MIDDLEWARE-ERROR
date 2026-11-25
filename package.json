@@ -1,0 +1,15 @@
+{
+  "name": "t5-middleware-error",
+  "version": "1.0.0",
+  "description": "API Kantin - Tugas 5 Middleware & Error Terpusat",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3"
+  }
+}

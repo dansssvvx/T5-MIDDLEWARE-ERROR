@@ -1,0 +1,17 @@
+﻿node : [API_KEY] process.env.API_KEY tidak diset; memakai kunci default.
+At line:1 char:1
++ node src/index.js 2>&1 | Out-File -FilePath C:\Users\ASUS\AppData\Loc ...
++ ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([API_KEY] proce... kunci default.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Server berjalan di http://localhost:3000
+[SERVER_ERROR] TypeError: menu.dorong is not a function
+    at Object.create 
+(file:///D:/College/S7/Pemrograman%20%20Web%20Lanjut/Tugas/Tugas%205%20MIDDLEWARE%20ERROR/src/data/menu.data.js:25:10)
+    at Module.create (file:///D:/College/S7/Pemrograman%20%20Web%20Lanjut/Tugas/Tugas%205%20MIDDLEWARE%20ERROR/src/serv
+ices/menu.service.js:23:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async create (file:///D:/College/S7/Pemrograman%20%20Web%20Lanjut/Tugas/Tugas%205%20MIDDLEWARE%20ERROR/src/contr
+ollers/menu.controller.js:23:18)
+POST /menu -> 500 (9 ms)

@@ -1,0 +1,17 @@
+﻿PASS | GET daftar | GET /menu | 200 (expected 200) | [{"id":1,"nama":"Nasi Goreng Kambing","harga":18000,"kategori":"makanan","tersedia":true},{"id":2,"nama":"Es T
+PASS | GET filter | GET /menu?kategori=minuman | 200 (expected 200) | [{"id":2,"nama":"Es Teh Manis","harga":5000,"kategori":"minuman","tersedia":true},{"id":5,"nama":"Kopi Susu Gu
+PASS | GET detail | GET /menu/1 | 200 (expected 200) | {"id":1,"nama":"Nasi Goreng Kambing","harga":18000,"kategori":"makanan","tersedia":true}
+PASS | GET detail 404 | GET /menu/999 | 404 (expected 404) | NOT_FOUND: Menu tidak ditemukan
+PASS | URL tak dikenal | GET /rute-tidak-ada | 404 (expected 404) | ROUTE_NOT_FOUND: Rute tidak ditemukan
+PASS | POST 401 missing key | POST /menu | 401 (expected 401) | API_KEY_MISSING: API key wajib disertakan
+PASS | POST 401 wrong key | POST /menu | 401 (expected 401) | API_KEY_INVALID: API key tidak valid
+PASS | POST 422 | POST /menu | 422 (expected 422) | VALIDATION_ERROR: Data menu tidak valid (4 detail)
+PASS | POST 409 | POST /menu | 409 (expected 409) | NAMA_DUPLIKAT: Nama menu "es teh manis" sudah digunakan
+PASS | POST 201 | POST /menu | 201 (expected 201) | {"id":7,"nama":"Ayam Geprek Sambal Bawang","harga":32000,"kategori":"makanan","tersedia":true}
+PASS | PUT 200 | PUT /menu/3 | 200 (expected 200) | {"id":3,"nama":"Keripik Pisang Madu","harga":14000,"kategori":"camilan","tersedia":true}
+PASS | PUT 404 | PUT /menu/999 | 404 (expected 404) | NOT_FOUND: Menu tidak ditemukan
+PASS | DELETE 401 | DELETE /menu/1 | 401 (expected 401) | API_KEY_MISSING: API key wajib disertakan
+PASS | DELETE 204 | DELETE /menu/5 | 204 (expected 204) | 
+PASS | DELETE 404 | DELETE /menu/999 | 404 (expected 404) | NOT_FOUND: Menu tidak ditemukan
+PASS | GET setelah DELETE | GET /menu/5 | 404 (expected 404) | NOT_FOUND: Menu tidak ditemukan
+RESULT 16/16

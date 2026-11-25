@@ -1,0 +1,6 @@
+Hasil klien saat src/data/menu.data.js sengaja diubah menjadi menu.dorong(data):
+
+STATUS 500 BODY {"error":{"pesan":"Terjadi kesalahan pada server","kode":"INTERNAL_ERROR"}}
+
+Stack trace TIDAK dikirim ke klien; stack hanya ada di bukti-teks-terminal-500.txt.
+Setelah screenshot diambil, kode dikembalikan ke menu.push(data) dan POST valid kembali menghasilkan 201.

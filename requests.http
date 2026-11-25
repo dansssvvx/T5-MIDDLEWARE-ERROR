@@ -1,0 +1,128 @@
+@baseUrl = http://localhost:3000
+@apiKey = pwl-secret-key-2026
+
+### 1. GET daftar menu -> 200
+GET {{baseUrl}}/menu
+Accept: application/json
+
+### 2. GET daftar dengan filter kategori -> 200
+GET {{baseUrl}}/menu?kategori=minuman
+Accept: application/json
+
+### 3. GET detail menu yang ada -> 200
+GET {{baseUrl}}/menu/1
+Accept: application/json
+
+### 4. GET detail menu tidak ada -> 404 NOT_FOUND
+GET {{baseUrl}}/menu/999
+Accept: application/json
+
+### 5. URL tidak dikenal -> 404 ROUTE_NOT_FOUND
+GET {{baseUrl}}/rute-tidak-ada
+Accept: application/json
+
+### 6. POST menu valid -> 201
+POST {{baseUrl}}/menu
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "nama": "Ayam Geprek Sambal Bawang",
+  "harga": 32000,
+  "kategori": "makanan"
+}
+
+### 7. POST tanpa API key -> 401 API_KEY_MISSING
+POST {{baseUrl}}/menu
+Content-Type: application/json
+
+{
+  "nama": "Es Jeruk Peras",
+  "harga": 8000,
+  "kategori": "minuman"
+}
+
+### 8. POST API key salah -> 401 API_KEY_INVALID
+POST {{baseUrl}}/menu
+Content-Type: application/json
+x-api-key: kunci-salah
+
+{
+  "nama": "Es Jeruk Peras",
+  "harga": 8000,
+  "kategori": "minuman"
+}
+
+### 9. POST data invalid (semua kesalahan sekaligus) -> 422 VALIDATION_ERROR
+POST {{baseUrl}}/menu
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "nama": "Ab",
+  "harga": 500,
+  "kategori": "minuman dingin",
+  "tersedia": "mungkin"
+}
+
+### 10. POST nama kembar abaikan huruf besar/kecil -> 409 NAMA_DUPLIKAT
+POST {{baseUrl}}/menu
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "nama": "es teh manis",
+  "harga": 6000,
+  "kategori": "minuman"
+}
+
+### 11. PUT menu yang ada -> 200 (bonus)
+PUT {{baseUrl}}/menu/3
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "nama": "Keripik Pisang Madu",
+  "harga": 14000,
+  "kategori": "camilan",
+  "tersedia": true
+}
+
+### 12. PUT menu tidak ada -> 404 NOT_FOUND (bonus)
+PUT {{baseUrl}}/menu/999
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "nama": "Roti Bakar Cokelat",
+  "harga": 15000,
+  "kategori": "camilan"
+}
+
+### 13. DELETE tanpa API key -> 401 API_KEY_MISSING
+DELETE {{baseUrl}}/menu/1
+Accept: application/json
+
+### 14. DELETE menu yang ada -> 204 tanpa body
+DELETE {{baseUrl}}/menu/5
+x-api-key: {{apiKey}}
+
+### 15. DELETE menu tidak ada -> 404 NOT_FOUND
+DELETE {{baseUrl}}/menu/999
+x-api-key: {{apiKey}}
+
+### 16. Cek hasil DELETE -> 200 (id 5 sudah hilang)
+GET {{baseUrl}}/menu/5
+Accept: application/json
+
+### 17. Uji 500: lakukan setelah menyabotase sementara menu.push -> menu.dorong
+# di src/data/menu.data.js, lalu kirim request ini, lalu KEMBALIKAN ke menu.push
+POST {{baseUrl}}/menu
+Content-Type: application/json
+x-api-key: {{apiKey}}
+
+{
+  "nama": "Nasi Lemak Ayam Rendang",
+  "harga": 27000,
+  "kategori": "makanan"
+}
